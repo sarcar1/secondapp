@@ -12,10 +12,15 @@ import { BuyoutPage } from '../buyout/buyout';
   templateUrl: 'shop.html'
 })
 export class ShopPage {
-  item: string;
+  myColor1: string = 'primary';
+  listToSend: Array<string> = [];
+
   constructor(public navCtrl: NavController, public navParams: NavParams) { }
 
-  onBuy(productData: { item: string }) {
-    this.navCtrl.push(BuyoutPage, productData);
+  onClickButton(productData: { item: string }) {
+    //this.navCtrl.push(BuyoutPage, productData);
+    this.myColor1 = 'secondary';
+    this.listToSend.push(productData.item);
+    console.log(this.listToSend);
   }
 }

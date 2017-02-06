@@ -5,7 +5,16 @@
 </ion-header>
 
 <ion-content padding>
-  <button ion-button (click)='onBuy( {item: "Milk"})'>Milk</button>
-  <button ion-button (click)='onBuy( {item: "Bread"})'>Bread</button>
-  <button ion-button (click)='onBuy( {item: "Apples"})'>Apples</button>
+  <button ion-button [color]="myColor1" (click)='onClickButton( {item: "Lapte"} )'>Lapte</button>
+  <button ion-button [color]="myColor1" (click)='onClickButton( {item: "Paine"} )'>Paine</button>
+  <button ion-button (click)='onClickButton( {item: "Mere"} )'>Mere</button>
+  <button ion-button (click)='onClickButton( {item: "Ceapa"} )'>Ceapa</button>
+  <button ion-button (click)='onClickButton( {item: "Telina"} )'>Telina</button>
+  <button ion-button (click)='onClickButton( {item: "Gulie"} )'>Gulie</button>
+  <button ion-button (click)='onClickButton( {item: "Radacina Patrunjel"} )'>Radacina Patrunjel</button>
+  <button ion-button (click)='onClickButton( {item: "Rodie"} )'>Rodie</button>
+  <button ion-button (click)='onClickButton( {item: "Banane"} )'>Banane</button>
+  <button ion-button (click)='onClickButton( {item: "Clementine"} )'>Clementine</button>
+  <button ion-button (click)='onClickButton( {item: "Pufuleti"} )'>Pufuleti</button>
+  <button ion-button (click)='onClickButton( {item: "Unt"} )'>Unt</button>
 </ion-content>
