@@ -12,12 +12,19 @@ import { BuyoutPage } from '../buyout/buyout';
   templateUrl: 'shop.html'
 })
 export class ShopPage {
-  listToSend: Array<string> = ["test"];
+  listToSend: Array<string> = [">>"];
 
   /*
     Constructor
   */
   constructor(public navCtrl: NavController, public navParams: NavParams) { }
+
+  /*
+    Send Email
+  */
+  onSendEmail() {
+      this.navCtrl.push(BuyoutPage, this.listToSend);
+  }
 
   /*
     Update button color and add item to list
