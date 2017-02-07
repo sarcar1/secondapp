@@ -12,15 +12,51 @@ import { BuyoutPage } from '../buyout/buyout';
   templateUrl: 'shop.html'
 })
 export class ShopPage {
-  myColor1: string = 'primary';
-  listToSend: Array<string> = [];
+  listToSend: Array<string> = ["test"];
 
+  /*
+    Constructor
+  */
   constructor(public navCtrl: NavController, public navParams: NavParams) { }
 
-  onClickButton(productData: { item: string }) {
-    //this.navCtrl.push(BuyoutPage, productData);
-    this.myColor1 = 'secondary';
-    this.listToSend.push(productData.item);
+  /*
+    Update button color and add item to list
+  */
+  onClickButton(button, productData: { item: string }) {
+
+    //
+    //  Add item to list if it's new
+    //
+    let addit:boolean = true;
+    for (let newItem of this.listToSend) {
+      if (String(newItem) === String(productData.item)) {
+        addit = false;
+        break;
+      }
+    }
+    if ( addit ) {
+        this.listToSend.push(productData.item);
+    }
+
+    //
+    //  Remove item it is selected the second time
+    //
+    var index:number = -1;
+    if ( button._color == "secondary" ) {
+      index = this.listToSend.indexOf(productData.item);
+    }
+    if (index > -1) {
+      this.listToSend.splice(index, 1);
+    }
+
+    //
+    //  Change color
+    //
+    button.color = ((button._color == "primary") || (button._color == "undefined")) ? "secondary" : "primary";
+
+    //
+    //  Log list
+    //
     console.log(this.listToSend);
   }
 }
