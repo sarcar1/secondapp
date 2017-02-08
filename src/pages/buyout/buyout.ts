@@ -7,15 +7,15 @@ import { EmailComposer } from 'ionic-native';
     templateUrl: 'buyout.html'
 })
 export class BuyoutPage {
-    productData: { item: string };
     listToSend: Array<string> = [];
 
     constructor(public navCtrl: NavController, public navParams: NavParams) {
         this.listToSend = this.navParams.data;
-        //this.onEmail(this.listToSend);
+        //console.log(this.listToSend.toLocaleString());
+        this.onEmail();
     }
 
-    onEmail(listToSend: Array<string>) {
+    onEmail() {
         EmailComposer.isAvailable().then((available: boolean) => {
             if (available) {
                 //Now we know we can send
@@ -28,7 +28,7 @@ export class BuyoutPage {
             bcc: [],
             attachments: [],
             subject: 'Shopping List',
-            body: 'How are you? Nice greetings from Leipzig',
+            body: this.listToSend.toLocaleString(),
             isHtml: true
         };
 
