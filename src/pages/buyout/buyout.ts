@@ -11,7 +11,7 @@ export class BuyoutPage {
 
     constructor(public navCtrl: NavController, public navParams: NavParams) {
         this.listToSend = this.navParams.data;
-        //console.log(this.listToSend.toLocaleString());
+        //console.log(this.listToSend.join('<br>'));
         this.onEmail();
     }
 
@@ -28,7 +28,7 @@ export class BuyoutPage {
             bcc: [],
             attachments: [],
             subject: 'Shopping List',
-            body: this.listToSend.toLocaleString(),
+            body: this.listToSend.join('<br>'),
             isHtml: true
         };
 

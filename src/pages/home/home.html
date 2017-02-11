@@ -7,8 +7,22 @@
 <ion-content padding>
   <h2>Welcome to Family Shopping List!</h2>
   <p>
-    It allow you to send quickly and easily longs lists for shopping to any person with email access without having to manually write
-    all the shopping items using the keyboard. Simply press the item you want and when ready, send it by pressing send email.
+    It allow you to send quickly and easily longs lists for shopping to any person with email access without having to manually
+    write all the shopping items using the keyboard. Simply press the item you want and when ready, send it by pressing send
+    email.
   </p>
+
+  <ion-list>
+    <ion-item>
+      <ion-label floating color="primary" stacked>Recipient Email</ion-label>
+      <ion-input type="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating color="primary" stacked>Recipient Tel</ion-label>
+      <ion-input type="number"></ion-input>
+    </ion-item>
+  </ion-list>
+
   <button ion-button full (click)='onClickShopButton()'>Create shpping list</button>
 </ion-content>
