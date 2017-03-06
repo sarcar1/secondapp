@@ -3,18 +3,18 @@ import { NavController, NavParams } from 'ionic-angular';
 import { EmailComposer } from 'ionic-native';
 
 @Component({
-    selector: 'page-buyout',
-    templateUrl: 'buyout.html'
+    selector: 'page-email',
+    templateUrl: 'email.html'
 })
-export class BuyoutPage {
+export class EmailPage {
     productData: { item: string };
     listToSend: Array<string> = [];
 
     constructor(public navCtrl: NavController, public navParams: NavParams) {
         this.listToSend = this.navParams.data;
         //this.onEmail(this.listToSend);
-        //console.log(this.listToSend.join('<br>'));
-        this.onEmail();
+        console.log(this.listToSend.join('<br>'));
+        //this.onEmail();
     }
 
     onEmail(listToSend: Array<string>) {
@@ -30,11 +30,7 @@ export class BuyoutPage {
             bcc: [],
             attachments: [],
             subject: 'Shopping List',
-<<<<<<< HEAD
-            body: 'How are you? Nice greetings from Leipzig',
-=======
             body: this.listToSend.join('<br>'),
->>>>>>> ddcc52ce94d6afce790c2b52e576550beac4fa17
             isHtml: true
         };
 

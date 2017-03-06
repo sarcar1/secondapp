@@ -1,16 +1,17 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Contact
-    </ion-title>
+    <ion-title>Send Email</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
   <p>Your list</p>
   <ul>
     <li *ngFor="let myItem of listToSend; let i=index">
       {{myItem}}
     </li>
   </ul>
+  <p>Sending email...</p>
+
+  <h2>Select app to send email</h2>
 </ion-content>

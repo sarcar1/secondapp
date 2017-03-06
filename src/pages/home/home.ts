@@ -8,6 +8,8 @@ import { ShopPage } from '../shop/shop';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  email: string;
+  tel: string;
 
   constructor(public navCtrl: NavController) {
 

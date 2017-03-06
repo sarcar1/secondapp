@@ -1,23 +1,24 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { BuyoutPage } from '../buyout/buyout';
+
+import { EmailPage } from '../send/email/email';
+import { ContactPage } from '../contact/contact';
+
 /*
   Generated class for the Shop page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
 */
 @Component({
   selector: 'page-shop',
   templateUrl: 'shop.html'
 })
 export class ShopPage {
-  listToSend: Array<string> = ["test"];
+  listToSend: Array<string> = [];
+  contact = ContactPage;
 
   /*
     Constructor
   */
-  constructor(public navCtrl: NavController, public navParams: NavParams) { }
+  constructor( public navCtrl: NavController, public navParams: NavParams ) {};
 
   /*
     Update button color and add item to list
@@ -58,5 +59,14 @@ export class ShopPage {
     //  Log list
     //
     console.log(this.listToSend);
-  }
+  };
+
+  /*
+    Send Email
+  */
+  onSendEmail() {
+      this.navCtrl.push(EmailPage, this.listToSend);
+  };
+
+
 }

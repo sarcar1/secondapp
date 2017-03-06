@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-
 import { NavController } from 'ionic-angular';
 
 @Component({
-  selector: 'page-about',
-  templateUrl: 'about.html'
+  selector: 'page-sms',
+  templateUrl: 'sms.html'
 })
-export class AboutPage {
+export class SMSPage {
 
   constructor(public navCtrl: NavController) {
 

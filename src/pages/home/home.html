@@ -1,15 +1,12 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Family Shopping List</ion-title>
+    <ion-title>Quick Shopping List</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Family Shopping List!</h2>
   <p>
-    It allow you to send quickly and easily longs lists for shopping to any person with email access without having to manually
-    write all the shopping items using the keyboard. Simply press the item you want and when ready, send it by pressing send
-    email.
+    Build your shopping lists without the hassle of typing.
   </p>
 
   <ion-list>
@@ -20,9 +17,21 @@
 
     <ion-item>
       <ion-label floating color="primary" stacked>Recipient Tel</ion-label>
-      <ion-input type="number"></ion-input>
+      <ion-input type="tel"></ion-input>
     </ion-item>
   </ion-list>
 
   <button ion-button full (click)='onClickShopButton()'>Create shpping list</button>
+
+  <ion-fab top right edge>
+    <button ion-fab mini><ion-icon name="add"></ion-icon></button>
+    <ion-fab-list>
+      <button ion-fab [navPush]="contact" [navParams]="listToSend"><ion-icon name="star"></ion-icon></button>
+      <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
+      <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
+      <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
+      <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+
 </ion-content>
