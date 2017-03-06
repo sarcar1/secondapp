@@ -13,7 +13,6 @@ import { ContactPage } from '../contact/contact';
 })
 export class ShopPage {
   listToSend: Array<string> = [];
-  contact = ContactPage;
 
   /*
     Constructor
