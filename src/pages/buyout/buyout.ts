@@ -12,7 +12,12 @@ export class BuyoutPage {
 
     constructor(public navCtrl: NavController, public navParams: NavParams) {
         this.listToSend = this.navParams.data;
+<<<<<<< HEAD
         //this.onEmail(this.listToSend);
+=======
+        //console.log(this.listToSend.join('<br>'));
+        this.onEmail();
+>>>>>>> ddcc52ce94d6afce790c2b52e576550beac4fa17
     }
 
     onEmail(listToSend: Array<string>) {
@@ -28,7 +33,11 @@ export class BuyoutPage {
             bcc: [],
             attachments: [],
             subject: 'Shopping List',
+<<<<<<< HEAD
             body: 'How are you? Nice greetings from Leipzig',
+=======
+            body: this.listToSend.join('<br>'),
+>>>>>>> ddcc52ce94d6afce790c2b52e576550beac4fa17
             isHtml: true
         };
 
