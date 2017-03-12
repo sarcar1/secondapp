@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
-import { ShopPage } from '../shop/shop';
+import { ShopPage } from '../supermarket/shop/shop';
 import { ContactPage } from '../contact/contact';
 import { AlertController } from 'ionic-angular';
 

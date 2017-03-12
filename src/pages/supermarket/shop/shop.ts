@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-import { EmailPage } from '../send/email/email';
-import { ContactPage } from '../contact/contact';
+import { EmailPage } from '../../send/email/email';
 
 /*
   Generated class for the Shop page.
