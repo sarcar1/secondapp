@@ -11,6 +11,7 @@ import { SettingsPage } from "../pages/settings/settings";
 import { CategoriesPage } from "../pages/supermarket/categories/categories";
 import { ItemsPage } from "../pages/supermarket/items/items";
 import { ShopListService } from "../pages/services/shopList.service";
+import { ItemUpdatePage } from "../pages/supermarket/item-update/item-update";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ShopListService } from "../pages/services/shopList.service";
     EmailPage,
     SettingsPage,
     CategoriesPage,
-    ItemsPage
+    ItemsPage,
+    ItemUpdatePage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -39,7 +41,8 @@ import { ShopListService } from "../pages/services/shopList.service";
     EmailPage,
     SettingsPage,
     CategoriesPage,
-    ItemsPage
+    ItemsPage,
+    ItemUpdatePage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

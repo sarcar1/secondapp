@@ -6,15 +6,33 @@
 
 <ion-content padding>
 
+  <!-- Quotes -->
+  <hr ion-text color="primary">
+  <h3 ion-text color="primary">Quotes</h3>
+
+  <!-- id="{{quote.id}}" WORKS! -->
+  <button
+      id="generatedButton{{quote.id}}" 
+      ion-button
+      outline
+      color="primary"
+      *ngFor="let quote of quotes"
+      (click)='onClickButton($event, {item: "quote.person"} )'
+      (press)='onPressButton(quote)'>
+      {{quote.person}}
+  </button>
+  <button outline #buttonAdd01 color="primary" ion-button (click)='onAddItem()'>+</button>
+  
   <!-- Lichide -->
-  <hr>
-  <h3>Lichide</h3>
-  <button clear #button001 color="primary" ion-button (click)='onClickButton(button001, {item: "Apa"} )'>Apa</button>
-  <button clear #button002 color="primary" ion-button (click)='onClickButton(button002, {item: "Suc"} )'>Suc</button>
-  <button clear #button003 color="primary" ion-button (click)='onClickButton(button003, {item: "Bere"} )'>Bere</button>
-  <button clear #button004 color="primary" ion-button (click)='onClickButton(button004, {item: "Vin"} )'>Vin</button>
-  <button clear #button005 color="primary" ion-button (click)='onClickButton(button005, {item: "Ulei"} )'>Ulei</button>
-  <button clear #button006 color="primary" ion-button (click)='onClickButton(button006, {item: "Ulei Masline"} )'>Ulei Masline</button>
+  <hr ion-text color="primary">
+  <h3 ion-text color="primary">Lichide</h3>
+  <button outline #button001 color="primary" ion-button (click)='onClickButton($event, {item: "Apa"} )'>Apa</button>
+  <button outline #button002 color="primary" ion-button (click)='onClickButton(button002, {item: "Suc"} )'>Suc</button>
+  <button outline #button003 color="primary" ion-button (click)='onClickButton(button003, {item: "Bere"} )'>Bere</button>
+  <button outline #button004 color="primary" ion-button (click)='onClickButton(button004, {item: "Vin"} )'>Vin</button>
+  <button outline #button005 color="primary" ion-button (click)='onClickButton(button005, {item: "Ulei"} )'>Ulei</button>
+  <button outline #button006 color="primary" ion-button (click)='onClickButton(button006, {item: "Ulei Masline"} )'>Ulei Masline</button>
+  <button outline #button007 color="primary" ion-button (click)='onAddItem()'>+</button>
   <!-- Lactate -->
   <hr>
   <h3>Lactate</h3>
