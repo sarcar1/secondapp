@@ -13,7 +13,7 @@ export class ItemsPage implements OnInit {
   constructor( 
     private navParams: NavParams, 
     private altertCtrl: AlertController,
-    private shopList: ShopListService ) {}
+    private shopListService: ShopListService ) {}
 
   ngOnInit() {
     this.category = this.navParams.data;
@@ -21,14 +21,14 @@ export class ItemsPage implements OnInit {
 
   onAddToFavorits(selectedItem: Quote) {
     const myAlert = this.altertCtrl.create({
-      title: 'Add Item',
-      subTitle: 'Are you sure?',
+      title: 'Add Item?',
+      subTitle: 'Add to shopping list',
       message: 'Are you sure you want to add the item?',
       buttons: [
         {
           text: 'Yes',
           handler: () => {
-            this.shopList.addItem(selectedItem);
+            this.shopListService.addItem(selectedItem);
           }
         },
         {
@@ -43,4 +43,11 @@ export class ItemsPage implements OnInit {
     myAlert.present();
   };
 
+  onRemoveFromFavorits(quote: Quote) {
+    this.shopListService.removeItem(quote);
+  }
+
+  isFavorite(quote: Quote) {
+    return this.shopListService.isQuoteFavorite(quote);
+  }
 }

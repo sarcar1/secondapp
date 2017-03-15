@@ -1,21 +1,36 @@
 export default [
   {
-    category: 'inspirational',
+    category: 'Lichide',
     quotes: [
       {
         id: '1',
-        person: 'Theodore Roosevelt',
-        text: 'Believe you can and you\'re halfway there'
+        person: 'Apa',
+        text: 'true'
       },
       {
         id: '2',
-        person: 'Norman Vincent Peale',
-        text: 'Change your thoughts and you change your world.'
+        person: 'Suc',
+        text: 'true'
       },
       {
         id: '3',
-        person: 'Robert H. Schuller',
-        text: 'What great thing would you attempt if you knew you could not fail?'
+        person: 'Bere',
+        text: 'true'
+      },
+      {
+        id: '4',
+        person: 'Vin',
+        text: 'true'
+      },
+      {
+        id: '5',
+        person: 'Ulei',
+        text: 'true'
+      },
+      {
+        id: '6',
+        person: 'Ulei Masline',
+        text: 'true'
       }
     ],
     icon: 'brush'

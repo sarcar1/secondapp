@@ -1,20 +1,23 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
 import { EmailComposer } from 'ionic-native';
+import { ShopListService } from "../../services/shopList.service";
+import { Quote } from "../../../data/quote.interface";
 
 @Component({
     selector: 'page-email',
     templateUrl: 'email.html'
 })
 export class EmailPage {
-    productData: { item: string };
     listToSend: Array<string> = [];
 
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
-        this.listToSend = this.navParams.data;
-        //this.onEmail(this.listToSend);
+    constructor(
+        public shopListService: ShopListService) {
+
+        this.shopListService.getCurrentList().forEach((quoteEl: Quote) => {
+            this.listToSend.push(quoteEl.person);
+        });
+        // this.onEmail(this.listToSend); // add this to send email
         console.log(this.listToSend.join('<br>'));
-        //this.onEmail();
     }
 
     onEmail(listToSend: Array<string>) {
@@ -36,5 +39,13 @@ export class EmailPage {
 
         // Send a text message using default options
         EmailComposer.open(email);
+    }
+
+    onRemoveFromSoppingList(item: string) {
+        const position = this.listToSend.findIndex((itemEl: string) => {
+            return itemEl == item;
+        });
+        this.listToSend.splice(position, 1);
+        console.log("listToSend:", this.listToSend);
     }
 }

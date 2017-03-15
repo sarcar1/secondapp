@@ -23,4 +23,12 @@ export class ShopListService {
         return this.currentList.slice();
     }
 
+    isQuoteFavorite(quote: Quote) {
+        // find function
+        //  - gets an argument of function which get executed on each item of the currentList array
+        return this.currentList.find( (quoteEl: Quote) => {
+            return quoteEl.id == quote.id;
+        });
+    }
+
 }
