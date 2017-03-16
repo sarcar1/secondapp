@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Quote } from "../../../data/quote.interface";
 import { ShopListService } from "../../services/shopList.service";
 import { ViewController, NavParams } from "ionic-angular";
 

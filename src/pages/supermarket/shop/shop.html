@@ -6,97 +6,20 @@
 
 <ion-content padding>
 
-  <!-- Lichide -->
+<span *ngFor="let category of allCategories">
   <hr ion-text color="primary">
-  <h3 ion-text color="primary">Lichide</h3>
+  <h3 ion-text color="primary">{{category.category}}</h3>
 
-  <!-- id="{{quote.id}}" WORKS! -->
-  <button
-      ion-button
-      outline
-      color="primary"
-      *ngFor="let quote of quotes"
-          id="generatedButton{{quote.id}}"
-          (click)='onClickButtonQuote($event, quote)'
-          (press)='onPressButton(quote)'>
+  <button ion-button outline color="primary" *ngFor="let quote of category.quotes" id="generatedButton{{quote.id}}" (click)='onClickButtonQuote($event, quote)' (press)='onPressButton(quote)'>
+    <span *ngIf="quote.default">
       {{quote.person}}
+    </span>
   </button>
-  <button outline #buttonAdd01 color="primary" ion-button [navPush]="categoriesPage">+</button>
-  
-  <!-- Lactate -->
-  <hr>
-  <h3>Lactate</h3>
-  <button #button101 color="primary" ion-button (click)='onClickButton(button101, {item: "Lapte"} )'>Lapte</button>
-  <button #button102 color="primary" ion-button (click)='onClickButton(button102, {item: "Unt"} )'>Unt</button>
-  <button #button103 color="primary" ion-button (click)='onClickButton(button103, {item: "Cascaval"} )'>Cascaval</button>
-  <button #button104 color="primary" ion-button (click)='onClickButton(button104, {item: "Iaurt"} )'>Iaurt</button>
-  <button #button105 color="primary" ion-button (click)='onClickButton(button105, {item: "Smantana"} )'>Smantana</button>
-  <button #button106 color="primary" ion-button (click)='onClickButton(button106, {item: "Mix Cheese"} )'>Mix Cheese</button>
-  <button #button107 color="primary" ion-button (click)='onClickButton(button107, {item: "Telemea in saramura"} )'>Telemea in saramura</button>
-  <button #button108 color="primary" ion-button (click)='onClickButton(button108, {item: "Parmezan"} )'>Parmezan</button>
-  <!-- Panificatie -->
-  <hr>
-  <h3>Panificatie</h3>
-  <button #button201 color="primary" ion-button (click)='onClickButton(button201, {item: "Paine"} )'>Paine</button>
-  <button #button202 color="primary" ion-button (click)='onClickButton(button202, {item: "Pufuleti"} )'>Pufuleti</button>
-  <button #button203 color="primary" ion-button (click)='onClickButton(button203, {item: "Cereale"} )'>Cereale</button>
-  <button #button204 color="primary" ion-button (click)='onClickButton(button204, {item: "Gris"} )'>Gris</button>
-  <button #button205 color="primary" ion-button (click)='onClickButton(button205, {item: "Faina"} )'>Faina</button>
-  <button #button206 color="primary" ion-button (click)='onClickButton(button206, {item: "Cacao"} )'>Cacao</button>
-  <!-- Fructe -->
-  <hr>
-  <h3>Fructe</h3>
-  <button #button301 color="primary" ion-button (click)='onClickButton(button301, {item: "Mere"} )'>Mere</button>
-  <button #button302 color="primary" ion-button (click)='onClickButton(button302, {item: "Rodie"} )'>Rodie</button>
-  <button #button303 color="primary" ion-button (click)='onClickButton(button303, {item: "Banane"} )'>Banane</button>
-  <button #button304 color="primary" ion-button (click)='onClickButton(button304, {item: "Clementine"} )'>Clementine</button>
-  <button #button305 color="primary" ion-button (click)='onClickButton(button305, {item: "Pere"} )'>Pere</button>
-  <button #button306 color="primary" ion-button (click)='onClickButton(button306, {item: "Portocale"} )'>Portocale</button>
-  <!-- Legume -->
-  <hr>
-  <h3>Legume</h3>
-  <button #button401 color="primary" ion-button (click)='onClickButton(button401, {item: "Morcovi"} )'>Morcovi</button>
-  <button #button402 color="primary" ion-button (click)='onClickButton(button402, {item: "Cartofi"} )'>Cartofi</button>
-  <button #button403 color="primary" ion-button (click)='onClickButton(button403, {item: "Brocoli"} )'>Brocoli</button>
-  <button #button404 color="primary" ion-button (click)='onClickButton(button404, {item: "Rosii"} )'>Rosii</button>
-  <button #button405 color="primary" ion-button (click)='onClickButton(button405, {item: "Ceapa"} )'>Ceapa</button>
-  <button #button406 color="primary" ion-button (click)='onClickButton(button406, {item: "Telina"} )'>Telina</button>
-  <button #button407 color="primary" ion-button (click)='onClickButton(button407, {item: "Gulie"} )'>Gulie</button>
-  <button #button408 color="primary" ion-button (click)='onClickButton(button408, {item: "Radacina Patrunjel"} )'>Radacina Patrunjel</button>
-  <button #button409 color="primary" ion-button (click)='onClickButton(button409, {item: "Porumb"} )'>Porumb</button>
-  <button #button410 color="primary" ion-button (click)='onClickButton(button410, {item: "Legume congelate mix"} )'>Legume congelate mix</button>
-  <button #button411 color="primary" ion-button (click)='onClickButton(button411, {item: "Usturoi"} )'>Usturoi</button>
-  <button #button412 color="primary" ion-button (click)='onClickButton(button412, {item: "Mazare la borcan"} )'>Mazare la borcan</button>
-  <button #button413 color="primary" ion-button (click)='onClickButton(button412, {item: "Orez"} )'>Orez</button>
-  <!-- Carne -->
-  <hr>
-  <h3>Carne</h3>
-  <button #button501 color="primary" ion-button (click)='onClickButton(button501, {item: "Piept de pui"} )'>Piept de pui</button>
-  <button #button502 color="primary" ion-button (click)='onClickButton(button502, {item: "Oua"} )'>Oua</button>
-  <button #button503 color="primary" ion-button (click)='onClickButton(button503, {item: "Somon"} )'>Somon</button>
-  <button #button504 color="primary" ion-button (click)='onClickButton(button504, {item: "Vita"} )'>Vita</button>
-  <button #button505 color="primary" ion-button (click)='onClickButton(button505, {item: "Creveti"} )'>Creveti</button>
-  <button #button506 color="primary" ion-button (click)='onClickButton(button506, {item: "Sunca"} )'>Sunca</button>
-  <button #button507 color="primary" ion-button (click)='onClickButton(button507, {item: "Amestec vita porc"} )'>Amestec vita porc</button>
-  <!-- Igiena -->
-  <hr>
-  <h3>Igiena</h3>
-  <button #button601 color="primary" ion-button (click)='onClickButton(button601, {item: "Hartie Igienica"} )'>Hartie Igienica</button>
-  <button #button602 color="primary" ion-button (click)='onClickButton(button602, {item: "Servetele Umede"} )'>Servetele Umede</button>
-  <button #button603 color="primary" ion-button (click)='onClickButton(button603, {item: "Servetele Bucatarie"} )'>Servetele Umede</button>
-  <button #button604 color="primary" ion-button (click)='onClickButton(button604, {item: "Detergent de toaleta"} )'>Detergent de toaleta</button>
-  <button #button605 color="primary" ion-button (click)='onClickButton(button605, {item: "Pasta de dinti"} )'>Pasta de dinti</button>
-  <button #button606 color="primary" ion-button (click)='onClickButton(button606, {item: "Gel de Dus"} )'>Gel de Dus</button>
-  <button #button607 color="primary" ion-button (click)='onClickButton(button607, {item: "Detergent Lichid"} )'>Detergent Lichid</button>
-  <button #button608 color="primary" ion-button (click)='onClickButton(button608, {item: "Balsam rufe"} )'>Balsam rufe</button>
-  <button #button609 color="primary" ion-button (click)='onClickButton(button609, {item: "Tampoane zilnice"} )'>Tampoane zilnice</button>
-  <button #button610 color="primary" ion-button (click)='onClickButton(button610, {item: "Tampoane de noapte"} )'>Tampoane de noapte</button>
-  <button #button611 color="primary" ion-button (click)='onClickButton(button611, {item: "Detergent Vase"} )'>Detergent Vase</button>
-  <!-- Dulciuri -->
-  <hr>
-  <h3>Dulciuri</h3>
-  <button #button701 color="primary" ion-button (click)='onClickButton(button701, {item: "Ciocolata"} )'>Ciocolata</button>
-  <button #button702 color="primary" ion-button (click)='onClickButton(button702, {item: "Biscuiti"} )'>Biscuiti</button>
+
+  <button outline color="primary" ion-button [navPush]="categoriesPage">
+    +
+  </button>
+</span>
 
 </ion-content>
 

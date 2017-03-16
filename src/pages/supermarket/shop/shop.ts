@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { ShopListService } from "../../services/shopList.service";
-import { Quote } from "../../../data/quote.interface";
+import { Quote, CategoryGroup } from "../../../data/quote.interface";
 import { ItemUpdatePage } from "../item-update/item-update";
 import { CategoriesPage } from "../categories/categories";
 import { EmailPage } from "../../send/email/email";
+import defaultCategories from "../../../data/quotes";
 
 /*
   Generated class for the Shop page.
@@ -18,16 +19,22 @@ export class ShopPage {
   listToSend: Array<string> = [];
   quotes: Quote[];
   toogle: boolean = true;
+  allCategories: CategoryGroup[];
+
+  // pages
   categoriesPage = CategoriesPage;
   emailPage = EmailPage;
 
-  constructor( public navCtrl: NavController,
-               private modalCtrl: ModalController,
-               private shopList: ShopListService,
-               public navParams: NavParams ) {};
+  constructor(
+        public navCtrl: NavController,
+        private modalCtrl: ModalController,
+        private shopList: ShopListService,
+        public navParams: NavParams) {
+    this.allCategories = defaultCategories;
+  }
 
   ionViewWillEnter() {
-    this.quotes = this.shopList.getCurrentList();
+    //this.quotes = this.quotes.concat(this.shopList.getCurrentList());
   }
 
   /*
@@ -39,24 +46,24 @@ export class ShopPage {
     let elem = document.getElementById(idAttr);
 
     if (elem.style.color == "") {
-        elem.style.color = "blue";
-      }
+      elem.style.color = "blue";
+    }
 
     //  Add item to list if it's new
-    let addit:boolean = true;
+    let addit: boolean = true;
     for (let newItem of this.listToSend) {
       if (String(newItem) === String(quote.person)) {
         addit = false;
         break;
       }
     }
-    if ( addit ) {
-        this.listToSend.push(quote.person);
+    if (addit) {
+      this.listToSend.push(quote.person);
     }
 
     //  Remove item it is selected the second time
-    var index:number = -1;
-    if ( elem.style.color == "green" ) {
+    var index: number = -1;
+    if (elem.style.color == "green") {
       index = this.listToSend.indexOf(quote.person);
     }
     if (index > -1) {
@@ -66,15 +73,15 @@ export class ShopPage {
     switch (elem.style.color) {
       case "blue": {
         elem.style.color = "green";
-        break; 
+        break;
       }
       case "green": {
         elem.style.color = "blue";
-        break; 
+        break;
       }
       default: {
         elem.style.color = "blue";
-        break; 
+        break;
       }
     }
 
@@ -130,14 +137,14 @@ export class ShopPage {
   onPressButton(quote: Quote) {
     const modal = this.modalCtrl.create(ItemUpdatePage, quote);
     modal.present();
-    modal.onDidDismiss( ( remove:boolean ) => {
-      if ( remove ) {
+    modal.onDidDismiss((remove: boolean) => {
+      if (remove) {
         this.shopList.removeItem(quote);
         // this.quotes = this.shopList.getCurrentList(); // re set all the list
-        const position = this.quotes.findIndex( ( quoteEl: Quote ) => {
+        const position = this.quotes.findIndex((quoteEl: Quote) => {
           return quoteEl.id == quote.id;
         });
-        this.quotes.splice( position, 1 ); // get a new array and remove at position 1 one element
+        this.quotes.splice(position, 1); // get a new array and remove at position 1 one element
       }
     });
   };
