@@ -21,14 +21,26 @@ export class ShopPage {
   emailPage = EmailPage;
 
   constructor(
-        public navCtrl: NavController,
+        private navCtrl: NavController,
         private modalCtrl: ModalController,
         private shopList: ShopListService,
-        public navParams: NavParams) {
+        private navParams: NavParams) {
   }
 
   ionViewWillEnter() {
     this.allCategories = defaultCategories;
+    console.log("this.shopList.getCurrentList: ",this.shopList.getCurrentList());
+
+    // add favorite quote in shop list
+    this.allCategories.forEach((categoryGroupEl: CategoryGroup) => {
+      categoryGroupEl.quotes.forEach((quoteEl: Quote) => {
+        if (this.shopList.isQuoteFavorite(quoteEl)) {
+          quoteEl.default = true;
+          console.log("Adding quoteEl to true:", quoteEl.person);
+        }
+      });
+    });
+
   }
   ionViewWillLeave() {
     this.shopList.setCurrentList(this.quotesToSend);
@@ -65,6 +77,34 @@ export class ShopPage {
         }
       });
     }
+    return selected;
+  }
+
+  shouldShow(quote: Quote) {
+    let selected: boolean = false;
+
+    // present in quotesToSend ?
+    if (this.quotesToSend.length != 0) {
+      this.quotesToSend.forEach((quoteEl: Quote) => {
+        if (quote.person == quoteEl.person) {
+          selected = true;
+          return;
+        }
+      });
+    }
+    // present in allCategories ?
+    // this.allCategories.forEach((categoriesGroupEl: CategoryGroup) => {
+    //   categoriesGroupEl.quotes.forEach((quoteEl: Quote) => {
+    //     if (quoteEl.id == quote.id) {
+    //       if (quoteEl.default == true) {
+    //         console.log("Found it:", quoteEl.person);
+    //         selected = true;
+    //         return;
+    //       }
+    //     }
+    //   });
+    // });
+
     return selected;
   }
 

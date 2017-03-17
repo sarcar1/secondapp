@@ -14,7 +14,7 @@ export default [
         id: 'a2',
         person: 'Suc',
         text: 'true',
-        default: true,
+        default: false,
         send: false,
         category: 'lichide'       
       },
@@ -51,7 +51,61 @@ export default [
         category: 'lichide'
       }
     ],
-    icon: 'brush'
+    icon: 'wine'
+  },
+  {
+    category: 'achool',
+    quotes: [
+      {
+        id: 'h1',
+        person: 'Wine',
+        text: 'true',
+        default: true,
+        send: false,
+        category: 'achool'
+      },
+      {
+        id: 'h2',
+        person: 'Beer',
+        text: 'true',
+        default: true,
+        send: false,
+        category: 'achool'       
+      },
+      {
+        id: 'h3',
+        person: 'Votka',
+        text: 'true',
+        default: true,
+        send: false,
+        category: 'achool'
+      },
+      {
+        id: 'h4',
+        person: 'Liquor',
+        text: 'true',
+        default: true,
+        send: false,
+        category: 'achool'
+      },
+      {
+        id: 'h5',
+        person: 'Burbon',
+        text: 'true',
+        default: true,
+        send: false,
+        category: 'achool'
+      },
+      {
+        id: 'h6',
+        person: 'Gin',
+        text: 'true',
+        default: true,
+        send: false,
+        category: 'achool'
+      }
+    ],
+    icon: 'beer'
   },
   {
     category: 'lactate',
@@ -105,7 +159,7 @@ export default [
         default: true
       }
     ],
-    icon: 'bicycle'
+    icon: 'color-fill'
   },
   {
     category: 'panificatie',
@@ -147,7 +201,7 @@ export default [
         default: true
       }
     ],
-    icon: 'battery-charging'
+    icon: 'cloudy'
   },
   {
     category: 'fructe',
@@ -189,7 +243,7 @@ export default [
         default: true
       }
     ],
-    icon: 'body'
+    icon: 'rose'
   },
   {
     category: 'legume',
@@ -273,7 +327,7 @@ export default [
         default: true
       }                                                
     ],
-    icon: 'body'
+    icon: 'nutrition'
   },
   {
     category: 'carne',
@@ -321,7 +375,7 @@ export default [
         default: true
       }
     ],
-    icon: 'body'
+    icon: 'logo-twitter'
   },
   {
     category: 'Igiena',
@@ -393,7 +447,7 @@ export default [
         default: true                                       
       }
     ],
-    icon: 'body'
+    icon: 'shirt'
   },
   {
     category: 'Dulciuri',
@@ -424,7 +478,7 @@ export default [
       },
       {
         id: 'g5',
-        person: 'Altele',
+        person: 'Inghetata',
         text: 'true',
         default: true     
       },
@@ -435,6 +489,6 @@ export default [
         default: true
       }
     ],
-    icon: 'body'
+    icon: 'ice-cream'
   }
 ];
