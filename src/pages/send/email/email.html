@@ -1,11 +1,10 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Send Email</ion-title>
+    <ion-title>Your List</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Your list</h2>
   <ion-list>
     <ion-item-sliding *ngFor="let item of listToSend">
       <ion-item color="quoteBackground">
@@ -20,5 +19,9 @@
     </ion-item-sliding>
   </ion-list>
 
-  <h2>Select app to send email</h2>
 </ion-content>
+<ion-footer text-center>
+    <button color="primary" ion-button [navPush]="WhatPage" [navParams]="Whatarams">Send Email</button>
+    <button color="secondary" ion-button [navPush]="WhatPage" [navParams]="Whatarams">Send SMS</button>
+    <button color="danger" ion-button [navPush]="WhatPage" [navParams]="Whatarams">Send Other</button>
+</ion-footer>
