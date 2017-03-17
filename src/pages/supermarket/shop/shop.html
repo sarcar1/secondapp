@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Select items</ion-title>
+    <ion-title></ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -10,12 +10,26 @@
   <hr ion-text color="primary">
   <h3 ion-text color="primary">{{category.category}}</h3>
 
-  <button ion-button outline color="primary" *ngFor="let quote of category.quotes" id="generatedButton{{quote.id}}" (click)='onClickButtonQuote($event, quote)' (press)='onPressButton(quote)'>
-    <span *ngIf="quote.default">
-      {{quote.person}}
-    </span>
-  </button>
-
+  <span *ngFor="let quote of category.quotes">
+    <button *ngIf="!isSelected(quote)"
+            id="generatedButton{{quote.id}}" 
+            ion-button outline color="primary"
+            (click)='onClickButton(quote)' 
+            (press)='onPressButton(quote)' >
+      <span *ngIf="quote.default">
+        {{quote.person}}
+      </span>
+    </button>
+    <button *ngIf="isSelected(quote)"
+            id="generatedButton{{quote.id}}" 
+            ion-button outline color="danger"
+            (click)='onClickButton(quote)' 
+            (press)='onPressButton(quote)' >
+      <span *ngIf="quote.default">
+        {{quote.person}}
+      </span>
+    </button>
+  </span>
   <button outline color="primary" ion-button [navPush]="categoriesPage">
     +
   </button>

@@ -6,37 +6,49 @@ export default [
         id: 'a1',
         person: 'Apa',
         text: 'true',
-        default: true
+        default: true,
+        send: false,
+        category: 'lichide'
       },
       {
         id: 'a2',
         person: 'Suc',
         text: 'true',
-        default: true
+        default: true,
+        send: false,
+        category: 'lichide'       
       },
       {
         id: 'a3',
         person: 'Bere',
         text: 'true',
-        default: true
+        default: true,
+        send: false,
+        category: 'lichide'
       },
       {
         id: 'a4',
         person: 'Vin',
         text: 'true',
-        default: true
+        default: true,
+        send: false,
+        category: 'lichide'
       },
       {
         id: 'a5',
         person: 'Ulei',
         text: 'true',
-        default: true
+        default: true,
+        send: false,
+        category: 'lichide'
       },
       {
         id: 'a6',
         person: 'Ulei Masline',
         text: 'true',
-        default: true
+        default: true,
+        send: false,
+        category: 'lichide'
       }
     ],
     icon: 'brush'

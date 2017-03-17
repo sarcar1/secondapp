@@ -8,17 +8,12 @@ import { CategoriesPage } from "../categories/categories";
 import { EmailPage } from "../../send/email/email";
 import defaultCategories from "../../../data/quotes";
 
-/*
-  Generated class for the Shop page.
-*/
 @Component({
   selector: 'page-shop',
   templateUrl: 'shop.html'
 })
 export class ShopPage {
-  listToSend: Array<string> = [];
-  quotes: Quote[];
-  toogle: boolean = true;
+  quotesToSend: Quote[] = [];
   allCategories: CategoryGroup[];
 
   // pages
@@ -30,121 +25,79 @@ export class ShopPage {
         private modalCtrl: ModalController,
         private shopList: ShopListService,
         public navParams: NavParams) {
-    this.allCategories = defaultCategories;
   }
 
   ionViewWillEnter() {
-    //this.quotes = this.quotes.concat(this.shopList.getCurrentList());
+    this.allCategories = defaultCategories;
+  }
+  ionViewWillLeave() {
+    this.shopList.setCurrentList(this.quotesToSend);
+  }
+  
+  onClickButton(quote: Quote) {
+    if (this.isSelected(quote)) {
+        this.shopList.removeItem(quote);
+        // this.quotes = this.shopList.getCurrentList(); // re-set all the list
+        const position = this.quotesToSend.findIndex((quoteEl: Quote) => {
+          return quoteEl.id == quote.id;
+        });
+        this.quotesToSend.splice(position, 1); // get a new array and remove at position 1 one element
+    }
+    else {
+      this.quotesToSend.push(quote);
+    }
+    
+    // log selected items
+    let allItems: string[] = [];
+    this.quotesToSend.forEach((element) => {
+      allItems.push(element.person);
+    });
+    console.log(allItems);
   }
 
-  /*
-    Update button color and add item to list
-  */
-  onClickButtonQuote(event, quote: Quote) {
-    let target = event.target || event.srcElement || event.currentTarget;
-    let idAttr = target.offsetParent.id || target.attributes.id;
-    let elem = document.getElementById(idAttr);
-
-    if (elem.style.color == "") {
-      elem.style.color = "blue";
+  isSelected(quote: Quote) {
+    let selected: boolean = false;
+    if (this.quotesToSend.length != 0) {
+      this.quotesToSend.forEach((quoteEl: Quote) => {
+        if (quote.person == quoteEl.person) {
+          selected = true;
+          return;
+        }
+      });
     }
-
-    //  Add item to list if it's new
-    let addit: boolean = true;
-    for (let newItem of this.listToSend) {
-      if (String(newItem) === String(quote.person)) {
-        addit = false;
-        break;
-      }
-    }
-    if (addit) {
-      this.listToSend.push(quote.person);
-    }
-
-    //  Remove item it is selected the second time
-    var index: number = -1;
-    if (elem.style.color == "green") {
-      index = this.listToSend.indexOf(quote.person);
-    }
-    if (index > -1) {
-      this.listToSend.splice(index, 1);
-    }
-
-    switch (elem.style.color) {
-      case "blue": {
-        elem.style.color = "green";
-        break;
-      }
-      case "green": {
-        elem.style.color = "blue";
-        break;
-      }
-      default: {
-        elem.style.color = "blue";
-        break;
-      }
-    }
-
-    // log list
-    console.log(this.listToSend);
+    return selected;
   }
 
-  // --- DEPRECATED ---
-  // /*
-  //   Update button color and add item to list 
-  // */
-  // onClickButton(button, productData: { item: string }) {
-
-  //   //
-  //   //  Add item to list if it's new
-  //   //
-  //   let addit:boolean = true;
-  //   for (let newItem of this.listToSend) {
-  //     if (String(newItem) === String(productData.item)) {
-  //       addit = false;
-  //       break;
-  //     }
-  //   }
-  //   if ( addit ) {
-  //       this.listToSend.push(productData.item);
-  //   }
-
-  //   //
-  //   //  Remove item it is selected the second time
-  //   //
-  //   var index:number = -1;
-  //   if ( button._color == "secondary" ) {
-  //     index = this.listToSend.indexOf(productData.item);
-  //   }
-  //   if (index > -1) {
-  //     this.listToSend.splice(index, 1);
-  //   }
-
-  //   //
-  //   //  Change color
-  //   //
-  //   button.color = ((button._color == "primary") || (button._color == "undefined")) ? "secondary" : "primary";
-
-  //   //
-  //   //  Log list
-  //   //
-  //   console.log(this.listToSend);
-  // };
-
-  /*
-    Ask if to remove button in case of long press on it
-  */
   onPressButton(quote: Quote) {
     const modal = this.modalCtrl.create(ItemUpdatePage, quote);
     modal.present();
     modal.onDidDismiss((remove: boolean) => {
       if (remove) {
+
+        // 1. Remove from quote in view
+        this.allCategories.forEach((categoryGroupEl: CategoryGroup) => {
+          if (categoryGroupEl.category == quote.category) {
+            const foundQuote = categoryGroupEl.quotes.findIndex((quoteEl: Quote) => {
+              if (quoteEl.id == quote.id) {
+                quoteEl.default = false;
+                return true;
+              } else {
+                return false;
+              }
+            });
+            if (!foundQuote) {
+              console.log("Didn't find quote in allCategories!");
+            }
+          }
+        });
+
+        // 2. Remove from quoteToSend
         this.shopList.removeItem(quote);
         // this.quotes = this.shopList.getCurrentList(); // re set all the list
-        const position = this.quotes.findIndex((quoteEl: Quote) => {
+        const position2 = this.quotesToSend.findIndex((quoteEl: Quote) => {
           return quoteEl.id == quote.id;
         });
-        this.quotes.splice(position, 1); // get a new array and remove at position 1 one element
+        this.quotesToSend.splice(position2, 1); // get a new array and remove at position 1 one element
       }
     });
   };

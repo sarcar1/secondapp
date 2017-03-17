@@ -24,6 +24,10 @@ export class ShopListService {
         return this.currentList.slice();
     }
 
+    setCurrentList(quotes: Quote[]) {
+        this.currentList = quotes;
+    }
+    
     isQuoteFavorite(quote: Quote) {
         // find function
         //  - gets an argument of function which get executed on each item of the currentList array
