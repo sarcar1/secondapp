@@ -84,26 +84,26 @@ export class ShopPage {
     let selected: boolean = false;
 
     // present in quotesToSend ?
-    if (this.quotesToSend.length != 0) {
-      this.quotesToSend.forEach((quoteEl: Quote) => {
-        if (quote.person == quoteEl.person) {
-          selected = true;
-          return;
-        }
-      });
-    }
-    // present in allCategories ?
-    // this.allCategories.forEach((categoriesGroupEl: CategoryGroup) => {
-    //   categoriesGroupEl.quotes.forEach((quoteEl: Quote) => {
-    //     if (quoteEl.id == quote.id) {
-    //       if (quoteEl.default == true) {
-    //         console.log("Found it:", quoteEl.person);
-    //         selected = true;
-    //         return;
-    //       }
+    // if (this.quotesToSend.length != 0) {
+    //   this.quotesToSend.forEach((quoteEl: Quote) => {
+    //     if (quote.person == quoteEl.person) {
+    //       selected = true;
+    //       return;
     //     }
     //   });
-    // });
+    // }
+    // present in allCategories ?
+    this.allCategories.forEach((categoriesGroupEl: CategoryGroup) => {
+      categoriesGroupEl.quotes.forEach((quoteEl: Quote) => {
+        if (quoteEl.id == quote.id) {
+          if (quoteEl.default == true) {
+            console.log("Found it:", quoteEl);
+            selected = true;
+            return;
+          }
+        }
+      });
+    });
 
     return selected;
   }

@@ -11,7 +11,7 @@
   <h3 ion-text color="primary">{{category.category}}</h3>
 
   <span *ngFor="let quote of category.quotes">
-    <button *ngIf="!shouldShow(quote)"
+    <button *ngIf="shouldShow(quote)"
             id="generatedButton{{quote.id}}" 
             ion-button outline color="primary"
             (click)='onClickButton(quote)' 
@@ -20,7 +20,7 @@
         {{quote.person}}
       </span>
     </button>
-    <button *ngIf="shouldShow(quote)"
+    <button *ngIf="!shouldShow(quote)"
             id="generatedButton{{quote.id}}" 
             ion-button outline color="danger"
             (click)='onClickButton(quote)' 
