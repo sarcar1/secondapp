@@ -12,6 +12,7 @@ import { CategoriesPage } from "../pages/supermarket/categories/categories";
 import { ItemsPage } from "../pages/supermarket/items/items";
 import { ShopListService } from "../pages/services/shopList.service";
 import { ItemUpdatePage } from "../pages/supermarket/item-update/item-update";
+import { AllCategoriesService } from "../pages/services/all.service";
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ItemUpdatePage } from "../pages/supermarket/item-update/item-update";
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ShopListService
+    ShopListService,
+    AllCategoriesService
     ]
 })
 export class AppModule {}

@@ -12,11 +12,13 @@ export class EmailPage {
 
     constructor(
         public shopListService: ShopListService) {
+    }
 
+    ionViewWillEnter() {
+        this.listToSend = [];
         this.shopListService.getCurrentList().forEach((quoteEl: Quote) => {
             this.listToSend.push(quoteEl.person);
         });
-        // this.onEmail(this.listToSend); // add this to send email
         console.log(this.listToSend.join('<br>'));
     }
 

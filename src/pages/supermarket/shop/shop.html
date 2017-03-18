@@ -6,31 +6,29 @@
 
 <ion-content padding>
 
-<span *ngFor="let category of allCategories">
+<span *ngFor="let category of allNewCategories">
   <hr ion-text color="primary">
   <h3 ion-text color="primary">{{category.category}}</h3>
 
   <span *ngFor="let quote of category.quotes">
-    <button *ngIf="shouldShow(quote)"
-            id="generatedButton{{quote.id}}" 
-            ion-button outline color="primary"
-            (click)='onClickButton(quote)' 
-            (press)='onPressButton(quote)' >
-      <span *ngIf="quote.default">
-        {{quote.person}}
-      </span>
-    </button>
-    <button *ngIf="!shouldShow(quote)"
-            id="generatedButton{{quote.id}}" 
-            ion-button outline color="danger"
-            (click)='onClickButton(quote)' 
-            (press)='onPressButton(quote)' >
-      <span *ngIf="quote.default">
-        {{quote.person}}
-      </span>
-    </button>
+    <span *ngIf="quote.default">
+      <button *ngIf="!isSelected(quote)"
+              id="generatedButton{{quote.id}}" 
+              ion-button outline color="primary"
+              (click)='onClickButton(quote)' 
+              (press)='onPressButton(quote)'>
+          {{quote.person}}
+      </button>
+      <button *ngIf="isSelected(quote)"
+              id="generatedButton{{quote.id}}" 
+              ion-button outline color="danger"
+              (click)='onClickButton(quote)' 
+              (press)='onPressButton(quote)'>
+          {{quote.person}}
+      </button>
+    </span>
   </span>
-  <button outline color="primary" ion-button [navPush]="categoriesPage">
+  <button outline color="primary" ion-button [navPush]="itemsPage" [navParams]="category">
     +
   </button>
 </span>

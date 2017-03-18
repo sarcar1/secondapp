@@ -7,105 +7,68 @@ import { ItemUpdatePage } from "../item-update/item-update";
 import { CategoriesPage } from "../categories/categories";
 import { EmailPage } from "../../send/email/email";
 import defaultCategories from "../../../data/quotes";
+import { AllCategoriesService } from "../../services/all.service";
+import { ItemsPage } from "../items/items";
 
 @Component({
   selector: 'page-shop',
   templateUrl: 'shop.html'
 })
 export class ShopPage {
-  quotesToSend: Quote[] = [];
-  allCategories: CategoryGroup[];
+  listToSend: Quote[] = [];
+  allNewCategories: CategoryGroup[];
 
   // pages
   categoriesPage = CategoriesPage;
+  itemsPage = ItemsPage;
   emailPage = EmailPage;
 
   constructor(
         private navCtrl: NavController,
         private modalCtrl: ModalController,
         private shopList: ShopListService,
-        private navParams: NavParams) {
+        private navParams: NavParams,
+        private all: AllCategoriesService) {
   }
 
   ionViewWillEnter() {
-    this.allCategories = defaultCategories;
+    this.allNewCategories = this.all.getAllCategories();
     console.log("this.shopList.getCurrentList: ",this.shopList.getCurrentList());
+  }
 
-    // add favorite quote in shop list
-    this.allCategories.forEach((categoryGroupEl: CategoryGroup) => {
-      categoryGroupEl.quotes.forEach((quoteEl: Quote) => {
-        if (this.shopList.isQuoteFavorite(quoteEl)) {
-          quoteEl.default = true;
-          console.log("Adding quoteEl to true:", quoteEl.person);
+  ionViewWillLeave() {
+    this.shopList.setCurrentList(this.listToSend);
+  }
+
+  isSelected(quote: Quote) {
+    let selected: boolean = false;
+    if (this.listToSend.length != 0) {
+      this.listToSend.forEach((quoteEl: Quote) => {
+        if (quote.person == quoteEl.person) {
+          selected = true;
         }
       });
-    });
-
-  }
-  ionViewWillLeave() {
-    this.shopList.setCurrentList(this.quotesToSend);
+    }
+    return selected;
   }
   
   onClickButton(quote: Quote) {
     if (this.isSelected(quote)) {
         this.shopList.removeItem(quote);
         // this.quotes = this.shopList.getCurrentList(); // re-set all the list
-        const position = this.quotesToSend.findIndex((quoteEl: Quote) => {
+        const position = this.listToSend.findIndex((quoteEl: Quote) => {
           return quoteEl.id == quote.id;
         });
-        this.quotesToSend.splice(position, 1); // get a new array and remove at position 1 one element
+        this.listToSend.splice(position, 1); // get a new array and remove at position 1 one element
     }
     else {
-      this.quotesToSend.push(quote);
+      this.listToSend.push(quote);
     }
     
     // log selected items
     let allItems: string[] = [];
-    this.quotesToSend.forEach((element) => {
-      allItems.push(element.person);
-    });
+    this.listToSend.forEach((element) => allItems.push(element.person));
     console.log(allItems);
-  }
-
-  isSelected(quote: Quote) {
-    let selected: boolean = false;
-    if (this.quotesToSend.length != 0) {
-      this.quotesToSend.forEach((quoteEl: Quote) => {
-        if (quote.person == quoteEl.person) {
-          selected = true;
-          return;
-        }
-      });
-    }
-    return selected;
-  }
-
-  shouldShow(quote: Quote) {
-    let selected: boolean = false;
-
-    // present in quotesToSend ?
-    // if (this.quotesToSend.length != 0) {
-    //   this.quotesToSend.forEach((quoteEl: Quote) => {
-    //     if (quote.person == quoteEl.person) {
-    //       selected = true;
-    //       return;
-    //     }
-    //   });
-    // }
-    // present in allCategories ?
-    this.allCategories.forEach((categoriesGroupEl: CategoryGroup) => {
-      categoriesGroupEl.quotes.forEach((quoteEl: Quote) => {
-        if (quoteEl.id == quote.id) {
-          if (quoteEl.default == true) {
-            console.log("Found it:", quoteEl);
-            selected = true;
-            return;
-          }
-        }
-      });
-    });
-
-    return selected;
   }
 
   onPressButton(quote: Quote) {
@@ -113,31 +76,11 @@ export class ShopPage {
     modal.present();
     modal.onDidDismiss((remove: boolean) => {
       if (remove) {
+        // 1. Remove from view
+        this.all.disableItem(quote);
 
-        // 1. Remove from quote in view
-        this.allCategories.forEach((categoryGroupEl: CategoryGroup) => {
-          if (categoryGroupEl.category == quote.category) {
-            const foundQuote = categoryGroupEl.quotes.findIndex((quoteEl: Quote) => {
-              if (quoteEl.id == quote.id) {
-                quoteEl.default = false;
-                return true;
-              } else {
-                return false;
-              }
-            });
-            if (!foundQuote) {
-              console.log("Didn't find quote in allCategories!");
-            }
-          }
-        });
-
-        // 2. Remove from quoteToSend
+        // 2. Remove from list to send
         this.shopList.removeItem(quote);
-        // this.quotes = this.shopList.getCurrentList(); // re set all the list
-        const position2 = this.quotesToSend.findIndex((quoteEl: Quote) => {
-          return quoteEl.id == quote.id;
-        });
-        this.quotesToSend.splice(position2, 1); // get a new array and remove at position 1 one element
       }
     });
   };

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Quote } from "../../../data/quote.interface";
+import { Quote, CategoryGroup } from "../../../data/quote.interface";
 import { NavParams, AlertController } from "ionic-angular";
 import { ShopListService } from "../../services/shopList.service";
+//import defaultCategories from "../../../data/quotes";
+import { AllCategoriesService } from "../../services/all.service";
 
 @Component({
   selector: 'page-items',
@@ -9,17 +11,22 @@ import { ShopListService } from "../../services/shopList.service";
 })
 export class ItemsPage implements OnInit {
   category: {category: string, quotes: Quote[], icon:string};
+  //allCategories: CategoryGroup[];
 
   constructor( 
     private navParams: NavParams, 
     private altertCtrl: AlertController,
-    private shopListService: ShopListService ) {}
+    private shopListService: ShopListService,
+    private all: AllCategoriesService ) {
+
+    }
 
   ngOnInit() {
     this.category = this.navParams.data;
+    //this.allCategories = defaultCategories;
   }
 
-  onAddToFavorits(selectedItem: Quote) {
+  onAddToFavorits(quote: Quote) {
     const myAlert = this.altertCtrl.create({
       title: 'Add Item?',
       subTitle: 'Add to shopping list',
@@ -28,7 +35,17 @@ export class ItemsPage implements OnInit {
         {
           text: 'Yes',
           handler: () => {
-            this.shopListService.addItem(selectedItem);
+            this.all.enableItem(quote);
+            //this.shopListService.addItem(selectedItem);
+            //this.shopListService.addItem(selectedItem);
+            // add favorite quote in shop list
+            // this.allCategories.forEach((categoryGroupEl: CategoryGroup) => {
+            //   categoryGroupEl.quotes.forEach((quoteEl: Quote) => {
+            //     if (quoteEl.id == selectedItem.id) {
+            //       quoteEl.default == true;
+            //     }
+            //   });
+            // });            
           }
         },
         {
@@ -44,10 +61,12 @@ export class ItemsPage implements OnInit {
   };
 
   onRemoveFromFavorits(quote: Quote) {
-    this.shopListService.removeItem(quote);
+    //this.shopListService.removeItem(quote);
+    this.all.disableItem(quote);
   }
 
   isFavorite(quote: Quote) {
-    return this.shopListService.isQuoteFavorite(quote);
+    //return this.shopListService.isQuoteFavorite(quote);
+    this.all.isItemEnabled(quote);
   }
 }
