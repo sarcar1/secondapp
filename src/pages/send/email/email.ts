@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { EmailComposer } from 'ionic-native';
 import { ShopListService } from "../../services/shopList.service";
 import { Quote } from "../../../data/quote.interface";
+import { SettingsService } from "../../services/settings.service";
 
 @Component({
     selector: 'page-email',
@@ -11,7 +12,8 @@ export class EmailPage {
     listToSend: Array<string> = [];
 
     constructor(
-        public shopListService: ShopListService) {
+        public shopListService: ShopListService,
+        private settingsService: SettingsService) {
     }
 
     ionViewWillEnter() {
@@ -22,7 +24,15 @@ export class EmailPage {
         console.log(this.listToSend.join('<br>'));
     }
 
-    onEmail(listToSend: Array<string>) {
+    onRemoveFromSoppingList(item: string) {
+        const position = this.listToSend.findIndex((itemEl: string) => {
+            return itemEl == item;
+        });
+        this.listToSend.splice(position, 1);
+        console.log("listToSend:", this.listToSend);
+    }    
+
+    onEmail() {
         EmailComposer.isAvailable().then((available: boolean) => {
             if (available) {
                 //Now we know we can send
@@ -30,7 +40,7 @@ export class EmailPage {
         });
 
         let email = {
-            to: 'razvan.sarca@gmail.com',
+            to: this.settingsService.getEmail(),
             cc: '',
             bcc: [],
             attachments: [],
@@ -43,11 +53,13 @@ export class EmailPage {
         EmailComposer.open(email);
     }
 
-    onRemoveFromSoppingList(item: string) {
-        const position = this.listToSend.findIndex((itemEl: string) => {
-            return itemEl == item;
-        });
-        this.listToSend.splice(position, 1);
-        console.log("listToSend:", this.listToSend);
+    onSMS() {
+    }
+
+    onGoogleKeep() {
+    }
+
+    getBackground() {
+        return this.settingsService.isAltBackground() ? 'altQuoteBackground' : 'quoteBackground';
     }
 }

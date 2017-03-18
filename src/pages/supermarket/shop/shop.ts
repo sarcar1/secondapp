@@ -6,7 +6,6 @@ import { Quote, CategoryGroup } from "../../../data/quote.interface";
 import { ItemUpdatePage } from "../item-update/item-update";
 import { CategoriesPage } from "../categories/categories";
 import { EmailPage } from "../../send/email/email";
-import defaultCategories from "../../../data/quotes";
 import { AllCategoriesService } from "../../services/all.service";
 import { ItemsPage } from "../items/items";
 

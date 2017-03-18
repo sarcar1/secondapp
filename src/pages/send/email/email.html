@@ -1,13 +1,27 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Your List</ion-title>
+
+    <!-- this is the menu button -->
+    <ion-buttons end> <!-- ion-buttons controls where they sit, and look nice -->
+      <button ion-button>
+        <ion-icon name="share"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end> <!-- ion-buttons controls where they sit, and look nice -->
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    
+    <ion-title>Buy</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <p>Remove <i>extra</i> items by sliding left</p>
   <ion-list>
     <ion-item-sliding *ngFor="let item of listToSend">
-      <ion-item color="quoteBackground">
+      <ion-item [color]="getBackground()">
         {{item}}
       </ion-item>
       <ion-item-options>
@@ -21,7 +35,7 @@
 
 </ion-content>
 <ion-footer text-center>
-    <button color="primary" ion-button [navPush]="WhatPage" [navParams]="Whatarams">Send Email</button>
-    <button color="secondary" ion-button [navPush]="WhatPage" [navParams]="Whatarams">Send SMS</button>
-    <button color="danger" ion-button [navPush]="WhatPage" [navParams]="Whatarams">Send Other</button>
+    <button color="danger" ion-button full (click)="onGoogleKeep()">Share to Google Keep</button>
+    <button color="secondary" ion-button full (click)="onSMS()">Send SMS</button>
+    <button color="primary" ion-button full (click)="onEmail()">Send Email</button>
 </ion-footer>

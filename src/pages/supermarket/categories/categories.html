@@ -2,20 +2,24 @@
 
   <ion-navbar>
     <!-- this is the menu button -->
-    <ion-buttons start> <!-- ion-buttons controls where they sit, and look nice -->
+    <ion-buttons end> <!-- ion-buttons controls where they sit, and look nice -->
+      <button ion-button>
+        <ion-icon name="share"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end> <!-- ion-buttons controls where they sit, and look nice -->
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
     </ion-buttons>
         
-    <ion-title>Categories</ion-title>
+    <ion-title text-center>Supermarket</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <h3 text-center>Select your favorite quote</h3>
   <ion-list>
     <ion-item *ngFor="let quoteGroup of quoteCollection" [navPush]="itemsPage" [navParams]="quoteGroup">
       <ion-icon [name]="quoteGroup.icon" item-left></ion-icon>

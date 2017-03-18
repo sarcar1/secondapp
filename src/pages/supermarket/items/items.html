@@ -9,11 +9,7 @@
 
 <ion-content padding>
   <ion-card *ngFor="let quote of category.quotes; let i = index">
-    <ion-card-header>
-      #{{ i + 1 }}
-    </ion-card-header>
     <ion-card-content>
-      <p>{{ quote.text }} </p>
       <p class="author">{{ quote.person }} </p>
     </ion-card-content>
     <ion-row>

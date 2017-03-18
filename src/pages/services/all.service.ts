@@ -37,7 +37,6 @@ export class AllCategoriesService {
                 if (quoteEl.id == quote.id) {
                     if (quoteEl.default == true) {
                         isItemEnabled = true;
-                        return;
                     }
                 }
             });
