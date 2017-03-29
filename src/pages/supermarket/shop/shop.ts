@@ -33,6 +33,7 @@ export class ShopPage {
   ionViewWillEnter() {
     this.allNewCategories = this.all.getAllCategories();
     console.log("this.shopList.getCurrentList: ",this.shopList.getCurrentList());
+    console.log("this.allNewCategories: ",this.allNewCategories);
   }
 
   ionViewWillLeave() {
@@ -41,13 +42,12 @@ export class ShopPage {
 
   isSelected(quote: Quote) {
     let selected: boolean = false;
-    if (this.listToSend.length != 0) {
       this.listToSend.forEach((quoteEl: Quote) => {
         if (quote.person == quoteEl.person) {
           selected = true;
+          return;
         }
       });
-    }
     return selected;
   }
   

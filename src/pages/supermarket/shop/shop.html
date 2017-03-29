@@ -13,7 +13,7 @@
       </button>
     </ion-buttons>
 
-    <ion-title text-center>Favorites</ion-title>
+    <ion-title text-center color="primary">Favorites</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -27,14 +27,14 @@
     <span *ngIf="quote.default">
       <button *ngIf="!isSelected(quote)"
               id="generatedButton{{quote.id}}" 
-              ion-button outline color="primary"
+              ion-button outline
               (click)='onClickButton(quote)' 
               (press)='onPressButton(quote)'>
           {{quote.person}}
       </button>
       <button *ngIf="isSelected(quote)"
               id="generatedButton{{quote.id}}" 
-              ion-button outline color="danger"
+              ion-button
               (click)='onClickButton(quote)' 
               (press)='onPressButton(quote)'>
           {{quote.person}}

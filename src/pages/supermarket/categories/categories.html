@@ -19,12 +19,16 @@
 </ion-header>
 
 
-<ion-content padding>
-  <ion-list>
-    <ion-item *ngFor="let quoteGroup of quoteCollection" [navPush]="itemsPage" [navParams]="quoteGroup">
-      <ion-icon [name]="quoteGroup.icon" item-left></ion-icon>
-      <h3>{{ quoteGroup.category | uppercase }}</h3>
-      <p>{{ quoteGroup.quotes.length }} Quotes</p>
-    </ion-item>
-  </ion-list>
+<ion-content class="card-background-page">
+
+  <ion-card *ngFor="let quoteGroup of quoteCollection" [navPush]="itemsPage" [navParams]="quoteGroup">
+    <button ion-item>
+      <ion-avatar item-left>
+        <img [src]="quoteGroup.icon">
+      </ion-avatar>
+      <h2>{{ quoteGroup.category | uppercase }}</h2>
+      <p>{{ quoteGroup.quotes.length }} Items</p>
+    </button>
+  </ion-card>
+
 </ion-content>

@@ -19,14 +19,6 @@ export default [
         category: 'lichide'       
       },
       {
-        id: 'a3',
-        person: 'Bere',
-        text: 'true',
-        default: true,
-        send: false,
-        category: 'lichide'
-      },
-      {
         id: 'a4',
         person: 'Vin',
         text: 'true',
@@ -51,7 +43,7 @@ export default [
         category: 'lichide'
       }
     ],
-    icon: 'wine'
+    icon: 'images/categories/liquids.png'
   },
   {
     category: 'achool',
@@ -105,7 +97,7 @@ export default [
         category: 'achool'
       }
     ],
-    icon: 'beer'
+    icon: 'images/categories/alcohol.jpg'
   },
   {
     category: 'lactate',
@@ -159,7 +151,7 @@ export default [
         default: true
       }
     ],
-    icon: 'color-fill'
+    icon: 'images/categories/dairy.jpg'
   },
   {
     category: 'panificatie',
@@ -201,7 +193,7 @@ export default [
         default: true
       }
     ],
-    icon: 'cloudy'
+    icon: 'images/categories/bread.jpg'
   },
   {
     category: 'fructe',
@@ -243,7 +235,7 @@ export default [
         default: true
       }
     ],
-    icon: 'rose'
+    icon: 'images/categories/fruits.jpg'
   },
   {
     category: 'legume',
@@ -327,7 +319,7 @@ export default [
         default: true
       }                                                
     ],
-    icon: 'nutrition'
+    icon: 'images/categories/vegetables.jpg'
   },
   {
     category: 'carne',
@@ -375,7 +367,7 @@ export default [
         default: true
       }
     ],
-    icon: 'logo-twitter'
+    icon: 'images/categories/meats.jpg'
   },
   {
     category: 'Igiena',
@@ -447,7 +439,7 @@ export default [
         default: true                                       
       }
     ],
-    icon: 'shirt'
+    icon: 'images/categories/hygiene.jpg'
   },
   {
     category: 'Dulciuri',
@@ -489,6 +481,6 @@ export default [
         default: true
       }
     ],
-    icon: 'ice-cream'
+    icon: 'images/categories/sweets.jpg'
   }
 ];

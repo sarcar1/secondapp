@@ -3,6 +3,7 @@ import { EmailComposer } from 'ionic-native';
 import { ShopListService } from "../../services/shopList.service";
 import { Quote } from "../../../data/quote.interface";
 import { SettingsService } from "../../services/settings.service";
+import { reorderArray } from "ionic-angular";
 
 @Component({
     selector: 'page-email',
@@ -61,5 +62,9 @@ export class EmailPage {
 
     getBackground() {
         return this.settingsService.isAltBackground() ? 'altQuoteBackground' : 'quoteBackground';
+    }
+
+    reorderItems(indexes){
+        this.listToSend = reorderArray(this.listToSend, indexes);
     }
 }
