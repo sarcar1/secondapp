@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
 
 import { ShopListService } from "../../services/shopList.service";
 import { Quote, CategoryGroup } from "../../../data/quote.interface";
 import { ItemUpdatePage } from "../item-update/item-update";
+import { SettingsPage } from "../../settings/settings";
 import { CategoriesPage } from "../categories/categories";
 import { EmailPage } from "../../send/email/email";
 import { AllCategoriesService } from "../../services/all.service";
@@ -26,14 +27,15 @@ export class ShopPage {
         private navCtrl: NavController,
         private modalCtrl: ModalController,
         private shopList: ShopListService,
+        private altertCtrl: AlertController,
         private navParams: NavParams,
         private all: AllCategoriesService) {
   }
 
   ionViewWillEnter() {
     this.allNewCategories = this.all.getAllCategories();
-    console.log("this.shopList.getCurrentList: ",this.shopList.getCurrentList());
-    console.log("this.allNewCategories: ",this.allNewCategories);
+    //console.log("this.shopList.getCurrentList: ",this.shopList.getCurrentList());
+    //console.log("this.allNewCategories: ",this.allNewCategories);    
   }
 
   ionViewWillLeave() {
@@ -55,10 +57,16 @@ export class ShopPage {
     if (this.isSelected(quote)) {
         this.shopList.removeItem(quote);
         // this.quotes = this.shopList.getCurrentList(); // re-set all the list
-        const position = this.listToSend.findIndex((quoteEl: Quote) => {
-          return quoteEl.id == quote.id;
-        });
-        this.listToSend.splice(position, 1); // get a new array and remove at position 1 one element
+        
+        /*
+          This updates the listToSend
+          Bug: removes 1 more on item click
+        */
+
+        // const position = this.listToSend.findIndex((quoteEl: Quote) => {
+        //   return quoteEl.id == quote.id;
+        // });
+        // this.listToSend.splice(position, 1); // get a new array and remove at position 1 one element
     }
     else {
       this.listToSend.push(quote);

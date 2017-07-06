@@ -7,8 +7,8 @@ import { SettingsService } from "../services/settings.service";
   templateUrl: 'settings.html'
 })
 export class SettingsPage {
-  email: string = "razvan.sarca@gmail.com";
-  tel: string = "0743120114";
+  email: string = "";//"razvan.sarca@gmail.com";
+  tel: string = "";//"0743120114";
 
   constructor(
     private settingsService: SettingsService,
@@ -18,7 +18,7 @@ export class SettingsPage {
   ionViewCanLeave() {
   }
 
-  ionWillLeave() {
+  ionViewWillLeave() {
     if ( this.email == "" && this.tel == "" ) {
       let alert = this.alertCrtl.create({
         title: 'Oops',
@@ -39,4 +39,10 @@ export class SettingsPage {
   checkAltBAckground(): boolean {
     return this.settingsService.isAltBackground();
   }
+
+  onSave(): void {
+    this.settingsService.setEmail(this.email);
+    this.settingsService.setTel(this.tel);
+  }
+
 }

@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class SettingsService {
     private altBackground: boolean = false;
-    private email: string = "razvan.sarca@gmail.com";
-    private tel: string = "0743120114";
+    private email: string = ""; //"razvan.sarca@gmail.com";
+    private tel: string = ""; //"0743120114";
 
     constructor() { 
     }

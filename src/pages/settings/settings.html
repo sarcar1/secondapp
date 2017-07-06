@@ -3,13 +3,14 @@
   <ion-navbar>
 
     <!-- this is the menu button -->
-    <ion-buttons start> <!-- ion-buttons controls where they sit, and look nice -->
+    <ion-buttons left>
+      <!-- ion-buttons controls where they sit, and look nice -->
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
     </ion-buttons>
-        
-    <ion-title>Settings</ion-title>
+
+    <ion-title text-center color="primary">Settings</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -28,16 +29,22 @@
     </ion-row>
     <ion-row>
       <ion-item>
-      <ion-label floating color="primary" stacked>Recipient Email</ion-label>
-      <ion-input type="email" [(ngModel)]="email"></ion-input>
+        <ion-label floating color="primary" stacked>Recipient Email</ion-label>
+        <ion-input type="email" [(ngModel)]="email"></ion-input>
       </ion-item>
     </ion-row>
     <ion-row>
       <ion-item>
-      <ion-label floating color="primary" stacked>Recipient Tel</ion-label>
-      <ion-input type="tel" [(ngModel)]="tel"></ion-input>
+        <ion-label floating color="primary" stacked>Recipient Tel</ion-label>
+        <ion-input type="tel" [(ngModel)]="tel"></ion-input>
       </ion-item>
     </ion-row>
   </ion-grid>
 
 </ion-content>
+
+<ion-footer padding>
+  <button color="primary" ion-button large block icon-right (click)="onSave()">Save
+    <ion-icon name="save"></ion-icon>
+  </button>
+</ion-footer>

@@ -15,11 +15,11 @@ export class HomePage {
   constructor(public navCtrl: NavController) {};
 
   // stop for 1 sec before leaving
-  ionViewCanLeave(): boolean | Promise<{ void }> {
-    const promise = new Promise((resolve, reject) => {
-      setTimeout(resolve(), 5000);
-    });
-    return promise;
-  };
+  // ionViewCanLeave(): boolean | Promise<{ void }> {
+  //   const promise = new Promise((resolve, reject) => {
+  //     setTimeout(resolve(), 5000);
+  //   });
+  //   return promise;
+  // };
 
 }
