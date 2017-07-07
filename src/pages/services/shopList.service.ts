@@ -18,6 +18,7 @@ export class ShopListService {
             return quoteEl.id == quote.id;
         });
         this.currentList.splice(position, 1);
+        console.log(this.currentList);
     }
 
     getCurrentList() {
@@ -27,7 +28,7 @@ export class ShopListService {
     setCurrentList(quotes: Quote[]) {
         this.currentList = quotes;
     }
-    
+
     isQuoteFavorite(quote: Quote) {
         // find function
         //  - gets an argument of function which get executed on each item of the currentList array

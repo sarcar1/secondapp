@@ -9,22 +9,24 @@ import { CategoriesPage } from "../categories/categories";
 import { EmailPage } from "../../send/email/email";
 import { AllCategoriesService } from "../../services/all.service";
 import { ItemsPage } from "../items/items";
+import { SharePage } from "../../share/share";
 
 @Component({
   selector: 'page-shop',
   templateUrl: 'shop.html'
 })
 export class ShopPage {
-  listToSend: Quote[] = [];
+  //listToSend: Quote[] = [];
   allNewCategories: CategoryGroup[];
 
   // pages
   categoriesPage = CategoriesPage;
+  settingsPage = SettingsPage;
+  sharePage = SharePage;
   itemsPage = ItemsPage;
   emailPage = EmailPage;
 
   constructor(
-        private navCtrl: NavController,
         private modalCtrl: ModalController,
         private shopList: ShopListService,
         private altertCtrl: AlertController,
@@ -35,29 +37,31 @@ export class ShopPage {
   ionViewWillEnter() {
     this.allNewCategories = this.all.getAllCategories();
     //console.log("this.shopList.getCurrentList: ",this.shopList.getCurrentList());
-    //console.log("this.allNewCategories: ",this.allNewCategories);    
+    //console.log("this.allNewCategories: ",this.allNewCategories);
   }
 
   ionViewWillLeave() {
-    this.shopList.setCurrentList(this.listToSend);
+    //this.shopList.setCurrentList(this.listToSend);
   }
 
   isSelected(quote: Quote) {
-    let selected: boolean = false;
-      this.listToSend.forEach((quoteEl: Quote) => {
-        if (quote.person == quoteEl.person) {
-          selected = true;
-          return;
-        }
-      });
-    return selected;
+    // let selected: boolean = false;
+    //   this.listToSend.forEach((quoteEl: Quote) => {
+    //     if (quote.person == quoteEl.person) {
+    //       selected = true;
+    //       return;
+    //     }
+    //   });
+    // return selected;
+    return this.shopList.isQuoteFavorite(quote);
   }
-  
+
   onClickButton(quote: Quote) {
-    if (this.isSelected(quote)) {
+    if (this.shopList.isQuoteFavorite(quote)) {
+    // if (this.isSelected(quote)) {
         this.shopList.removeItem(quote);
         // this.quotes = this.shopList.getCurrentList(); // re-set all the list
-        
+
         /*
           This updates the listToSend
           Bug: removes 1 more on item click
@@ -69,13 +73,14 @@ export class ShopPage {
         // this.listToSend.splice(position, 1); // get a new array and remove at position 1 one element
     }
     else {
-      this.listToSend.push(quote);
+      //this.listToSend.push(quote);
+      this.shopList.addItem(quote);
     }
-    
+
     // log selected items
-    let allItems: string[] = [];
-    this.listToSend.forEach((element) => allItems.push(element.person));
-    console.log(allItems);
+    // let allItems: string[] = [];
+    // this.listToSend.forEach((element) => allItems.push(element.person));
+    // console.log(allItems);
   }
 
   onPressButton(quote: Quote) {

@@ -7,8 +7,8 @@ import { SettingsService } from "../services/settings.service";
   templateUrl: 'settings.html'
 })
 export class SettingsPage {
-  email: string = "";//"razvan.sarca@gmail.com";
-  tel: string = "";//"0743120114";
+  email: string = "";
+  tel: string = "";
 
   constructor(
     private settingsService: SettingsService,
@@ -38,11 +38,6 @@ export class SettingsPage {
 
   checkAltBAckground(): boolean {
     return this.settingsService.isAltBackground();
-  }
-
-  onSave(): void {
-    this.settingsService.setEmail(this.email);
-    this.settingsService.setTel(this.tel);
   }
 
 }

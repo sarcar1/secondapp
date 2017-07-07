@@ -12,8 +12,7 @@ export class ItemUpdatePage {
 
   constructor(
     private viewCtrl: ViewController, // this controls the currently visible page
-    private navParams: NavParams,
-    private shopList: ShopListService ) {};
+    private navParams: NavParams ) {};
 
   // executed only if the page was not retreived from the CACHE
   ionViewDidLoad() {

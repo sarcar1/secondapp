@@ -11,7 +11,7 @@ import { ItemsPage } from "../items/items";
 export class CategoriesPage implements OnInit {
   quoteCollection: {category: string, quotes: Quote[], icon:string}[];
   itemsPage = ItemsPage;
-  
+
   ngOnInit() {
     this.quoteCollection = quote;
   }

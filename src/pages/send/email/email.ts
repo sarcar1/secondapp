@@ -17,7 +17,6 @@ export class EmailPage {
         private navCtrl: NavController,
         public shopListService: ShopListService,
         private altertCtrl: AlertController,
-        private modalCtrl: ModalController,
         private settingsService: SettingsService) {
     }
 

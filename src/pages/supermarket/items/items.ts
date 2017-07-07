@@ -11,10 +11,9 @@ import { AllCategoriesService } from "../../services/all.service";
 export class ItemsPage implements OnInit {
   category: {category: string, quotes: Quote[], icon:string};
 
-  constructor( 
-    private navParams: NavParams, 
+  constructor(
+    private navParams: NavParams,
     private altertCtrl: AlertController,
-    private shopListService: ShopListService,
     private all: AllCategoriesService ) {
     }
 
@@ -54,5 +53,5 @@ export class ItemsPage implements OnInit {
     return this.all.isItemEnabled(quote);
   }
 
-  
+
 }

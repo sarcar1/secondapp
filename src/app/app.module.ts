@@ -15,6 +15,8 @@ import { ShopListService } from "../pages/services/shopList.service";
 import { ItemUpdatePage } from "../pages/supermarket/item-update/item-update";
 import { AllCategoriesService } from "../pages/services/all.service";
 import { SettingsService } from "../pages/services/settings.service";
+import { SharePage } from "../pages/share/share";
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { SettingsService } from "../pages/services/settings.service";
     HomePage,
     TabsPage,
     ShopPage,
+    SharePage,
     EmailPage,
     SettingsPage,
     CategoriesPage,
@@ -42,6 +45,7 @@ import { SettingsService } from "../pages/services/settings.service";
     HomePage,
     TabsPage,
     ShopPage,
+    SharePage,
     EmailPage,
     SettingsPage,
     CategoriesPage,
@@ -52,7 +56,8 @@ import { SettingsService } from "../pages/services/settings.service";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ShopListService,
     AllCategoriesService,
-    SettingsService
+    SettingsService,
+    SocialSharing
     ]
 })
 export class AppModule {}

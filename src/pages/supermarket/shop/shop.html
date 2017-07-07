@@ -1,18 +1,19 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
 
     <!-- this is the menu button -->
     <!-- ion-buttons controls where they sit, and look nice -->
 
     <ion-buttons right> <!-- ion-buttons controls where they sit, and look nice -->
-      <button ion-button>
+      <button ion-button [navPush]="sharePage">
         <ion-icon name="share"></ion-icon>
       </button>
     </ion-buttons>
 
     <ion-buttons left> <!-- ion-buttons controls where they sit, and look nice -->
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
+      <!--<button ion-button menuToggle>-->
+        <button ion-button [navPush]="settingsPage">
+        <ion-icon name="settings"></ion-icon>
       </button>
     </ion-buttons>
 
@@ -29,16 +30,16 @@
   <span *ngFor="let quote of category.quotes">
     <span *ngIf="quote.default">
       <button *ngIf="!isSelected(quote)"
-              id="generatedButton{{quote.id}}" 
+              id="generatedButton{{quote.id}}"
               ion-button outline
-              (click)='onClickButton(quote)' 
+              (click)='onClickButton(quote)'
               (press)='onPressButton(quote)'>
           {{quote.person}}
       </button>
       <button *ngIf="isSelected(quote)"
-              id="generatedButton{{quote.id}}" 
+              id="generatedButton{{quote.id}}"
               ion-button
-              (click)='onClickButton(quote)' 
+              (click)='onClickButton(quote)'
               (press)='onPressButton(quote)'>
           {{quote.person}}
       </button>
