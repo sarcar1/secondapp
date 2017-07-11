@@ -4,7 +4,7 @@ import { ShopListService } from "../../services/shopList.service";
 import { SettingsPage } from "../../settings/settings";
 import { Quote } from "../../../data/quote.interface";
 import { SettingsService } from "../../services/settings.service";
-import { reorderArray, ModalController, AlertController, NavController } from "ionic-angular";
+import { reorderArray, AlertController, NavController } from "ionic-angular";
 
 @Component({
     selector: 'page-email',
@@ -12,6 +12,9 @@ import { reorderArray, ModalController, AlertController, NavController } from "i
 })
 export class EmailPage {
     listToSend: Array<string> = [];
+    myDate: String = "2017-07-09T14:06:11.156Z";
+    private myQuote: Quote;
+    sex: string;
 
     constructor(
         private navCtrl: NavController,
@@ -22,18 +25,25 @@ export class EmailPage {
 
     ionViewWillEnter() {
         this.listToSend = [];
+        this.myDate = new Date().toISOString();
         this.shopListService.getCurrentList().forEach((quoteEl: Quote) => {
             this.listToSend.push(quoteEl.person);
         });
         console.log(this.listToSend.join('<br>'));
+        this.sex = this.settingsService.getSex();
+        console.log("this.sex: ",this.sex);
     }
 
     onRemoveFromSoppingList(item: string) {
+        // Remove from listToSend
         const position = this.listToSend.findIndex((itemEl: string) => {
             return itemEl == item;
         });
         this.listToSend.splice(position, 1);
-        console.log("listToSend:", this.listToSend);
+        
+        // Remove from shopListService
+        this.myQuote = this.shopListService.isItemInList(item);
+        this.shopListService.removeItem(this.myQuote);
     }
 
     onEmail() {
@@ -59,9 +69,6 @@ export class EmailPage {
                 ]
             });
             myAlert.present();
-
-            // const modal = this.modalCtrl.create(SettingsPage);
-            // modal.present();
 
         } else {
 

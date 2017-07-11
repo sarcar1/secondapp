@@ -4,6 +4,7 @@ import { Quote } from "../../data/quote.interface";
 @Injectable()
 export class ShopListService {
     private currentList: Quote[] = [];
+    private myQuote: Quote;
 
     constructor() {
     }
@@ -35,6 +36,13 @@ export class ShopListService {
         return this.currentList.find( (quoteEl: Quote) => {
             return quoteEl.id == quote.id;
         });
+    }
+
+    isItemInList(item: String): Quote {
+        this.myQuote = this.currentList.find( (quoteEl: Quote) => {
+            return quoteEl.person == item;
+        });
+        return this.myQuote;
     }
 
 }

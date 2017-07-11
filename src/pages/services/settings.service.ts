@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class SettingsService {
     private altBackground: boolean = false;
-    private email: string = ""; //"razvan.sarca@gmail.com";
-    private tel: string = ""; //"0743120114";
+    private email: string = "";
+    private tel: string = "";
+    private sex: string = "";
 
     constructor() { 
     }
@@ -12,6 +13,14 @@ export class SettingsService {
     setBackground(isAlt: boolean): void {
         this.altBackground = isAlt;
     }
+
+    setSex(sex: string): void {
+        this.sex = sex;
+    }    
+    
+    getSex(): string {
+        return this.sex;
+    }   
 
     isAltBackground(): boolean {
         return this.altBackground;

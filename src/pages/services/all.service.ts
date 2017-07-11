@@ -1,4 +1,5 @@
-import defaultCategories from "../../data/quotes";
+//import defaultCategories from "../../data/quotes";
+import defaultCategories from "../../data/grocerylist";
 import { Injectable } from "@angular/core";
 import { CategoryGroup, Quote } from "../../data/quote.interface";
 

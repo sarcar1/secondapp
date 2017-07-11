@@ -17,28 +17,62 @@
 
 
 <ion-content padding>
+  
+  <ion-card>
+    <ion-card-content>
+      <p>
+      <ion-label floating color="primary" stacked>Recipient Email</ion-label>
+      <ion-input type="email" [(ngModel)]="email"></ion-input>
+      </p>
+      <p>
+      <ion-label floating color="primary" stacked>Recipient Tel</ion-label>
+      <ion-input type="tel" [(ngModel)]="tel"></ion-input>
+      </p>
+    </ion-card-content>
+  </ion-card>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-label>Alternative background</ion-label>
-      </ion-col>
-      <ion-col>
+  <ion-card>
+    <ion-card-content>
+        <ion-list radio-group [(ngModel)]="sex">
+
+          <ion-item>
+            <ion-avatar item-start>
+              <img src="../../assets/avatar/Male-Face-A4-icon.png">
+            </ion-avatar>
+            <ion-label>Male</ion-label>
+            <ion-radio value="go" checked="true"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-avatar item-start>
+              <img src="../../../assets/avatar/Female-Face-FH-3-slim-icon.png">
+            </ion-avatar>
+            <ion-label>Female</ion-label>
+            <ion-radio value="rust"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-avatar item-start>
+              <img src="../../../assets/avatar/anonym.png">
+            </ion-avatar>
+            <ion-label>Other</ion-label>
+            <ion-radio value="python"></ion-radio>
+          </ion-item>
+
+        </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title>
+        Alternative background
+      </ion-card-title>
+      <p>
         <ion-toggle (ionChange)="onToggle($event)" [checked]="checkAltBAckground()"></ion-toggle>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-item>
-        <ion-label floating color="primary" stacked>Recipient Email</ion-label>
-        <ion-input type="email" [(ngModel)]="email"></ion-input>
-      </ion-item>
-    </ion-row>
-    <ion-row>
-      <ion-item>
-        <ion-label floating color="primary" stacked>Recipient Tel</ion-label>
-        <ion-input type="tel" [(ngModel)]="tel"></ion-input>
-      </ion-item>
-    </ion-row>
-  </ion-grid>
+      </p>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

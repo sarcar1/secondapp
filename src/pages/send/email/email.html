@@ -7,12 +7,12 @@
       <button ion-button>
         <ion-icon name="share"></ion-icon>
       </button>
-    </ion-buttons>-->
+    </ion-buttons>
     <ion-buttons left>
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-    </ion-buttons>
+    </ion-buttons>-->
 
     <ion-title text-center color="primary"></ion-title>
 
@@ -20,27 +20,84 @@
 </ion-header>
 
 <ion-content padding>
-  <p>Remove <i>extra</i> items by sliding left</p>
-  <ion-list reorder="true" (ionItemReorder)="reorderItems($event)">
-    <ion-item-sliding *ngFor="let item of listToSend">
-      <ion-item [color]="getBackground()">
-        {{item}}
-      </ion-item>
-      <ion-item-options>
-        <button ion-button color="danger" (click)="onRemoveFromSoppingList(item)">
-        <ion-icon name="trash"></ion-icon>
-        Delete
+  
+  <ion-card>
+
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="../../../assets/avatar/Female-Face-FH-3-slim-icon.png">
+      </ion-avatar>
+      <h2>Female user</h2>
+      <p>
+
+      </p>
+    </ion-item>
+    
+    <ion-item>
+      <p><i>Order</i> by grabing the icon. <i>Remove</i> items by sliding left</p>
+    </ion-item>
+
+    <ion-card-content>
+      <p>
+
+        <ion-list reorder="true" (ionItemReorder)="reorderItems($event)">
+          <ion-item-sliding *ngFor="let item of listToSend">
+            <ion-item [color]="getBackground()">
+              {{item}}
+            </ion-item>
+            <ion-item-options>
+              <button ion-button color="danger" (click)="onRemoveFromSoppingList(item)">
+              <ion-icon name="trash"></ion-icon>
+              Delete
+            </button>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+
+      </p>
+
+      <button color="primary" ion-button large block icon-right (click)="onEmail()">
+        Send Email
+        <ion-icon name="mail"></ion-icon>
       </button>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
+      <button color="secondary" ion-button full icon-right (click)="onSMS()">
+        Send SMS
+        <ion-icon name="text"></ion-icon>
+      </button>
+      <!--<button color="danger" ion-button full (click)="onGoogleKeep()">Share to Google Keep</button>-->
+
+
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left clear small>
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div>12 Likes</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left clear small>
+          <ion-icon name="text"></ion-icon>
+          <div>4 Comments</div>
+        </button>
+      </ion-col>
+      <ion-col center text-center>
+        <ion-note>
+          <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate"></ion-datetime>
+        </ion-note>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+
+
+
+  
+  
+
+
 
 </ion-content>
 <ion-footer padding>
-    <!--<button color="danger" ion-button full (click)="onGoogleKeep()">Share to Google Keep</button>-->
-    <!--<button color="secondary" ion-button full (click)="onSMS()">Send SMS</button>-->
-    <button color="primary" ion-button large block icon-right (click)="onEmail()">
-      Send Email
-      <ion-icon name="send"></ion-icon>
-    </button>
 </ion-footer>

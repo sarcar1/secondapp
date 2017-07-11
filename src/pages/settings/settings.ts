@@ -9,6 +9,7 @@ import { SettingsService } from "../services/settings.service";
 export class SettingsPage {
   email: string = "";
   tel: string = "";
+  sex: string = "";
 
   constructor(
     private settingsService: SettingsService,

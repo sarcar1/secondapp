@@ -24,30 +24,55 @@
 <ion-content padding>
 
 <span *ngFor="let category of allNewCategories">
+  <!--
   <hr ion-text color="primary">
   <h3 ion-text color="primary">{{category.category}}</h3>
+  -->
+  <ion-card>
+    <!--
+    <ion-item>
+      <h2><span color="primary">{{category.category | uppercase}}</span></h2>
+    </ion-item>
+    -->
+    <img src={{category.icon}}/>
 
-  <span *ngFor="let quote of category.quotes">
-    <span *ngIf="quote.default">
-      <button *ngIf="!isSelected(quote)"
-              id="generatedButton{{quote.id}}"
-              ion-button outline
-              (click)='onClickButton(quote)'
-              (press)='onPressButton(quote)'>
-          {{quote.person}}
+    <ion-card-content>
+      
+      <ion-card-title>
+        <h2><span color="primary">{{category.category | uppercase}}</span></h2>
+      </ion-card-title>
+      
+      
+      <!-- THE LIST -->
+      <p>
+      <span *ngFor="let quote of category.quotes">
+        <span *ngIf="quote.default">
+          <button *ngIf="!isSelected(quote)"
+                  id="generatedButton{{quote.id}}"
+                  ion-button outline
+                  (click)='onClickButton(quote)'
+                  (press)='onPressButton(quote)'>
+              {{quote.person}}
+          </button>
+          <button *ngIf="isSelected(quote)"
+                  id="generatedButton{{quote.id}}"
+                  ion-button
+                  (click)='onClickButton(quote)'
+                  (press)='onPressButton(quote)'>
+              {{quote.person}}
+          </button>
+        </span>
+      </span>
+      <button outline color="primary" ion-button [navPush]="itemsPage" [navParams]="category">
+        +
       </button>
-      <button *ngIf="isSelected(quote)"
-              id="generatedButton{{quote.id}}"
-              ion-button
-              (click)='onClickButton(quote)'
-              (press)='onPressButton(quote)'>
-          {{quote.person}}
-      </button>
-    </span>
-  </span>
-  <button outline color="primary" ion-button [navPush]="itemsPage" [navParams]="category">
-    +
-  </button>
+      </p>
+      <!-- THE LIST -->
+
+    </ion-card-content>
+  </ion-card>
+
+
 </span>
 
 </ion-content>
